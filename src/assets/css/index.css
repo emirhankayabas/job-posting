@@ -1,0 +1,44 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  html,
+  body,
+  #layout {
+    height: 100%;
+  }
+
+  body {
+    @apply bg-zinc-900 text-white antialiased;
+  }
+
+  .job-detail ul {
+    @apply list-disc list-inside;
+  }
+
+  .employer-sidebar a.active {
+    @apply bg-neutral-800 font-medium;
+  }
+}
+
+.ql-picker-label {
+  color: #fff;
+}
+
+.ql-stroke {
+  stroke: #fff !important;
+}
+
+.ql-toolbar button:hover {
+  color: #06c !important;
+}
+
+.ql-toolbar button:hover .ql-stroke {
+  stroke: #06c !important;
+}
+
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
