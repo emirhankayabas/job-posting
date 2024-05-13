@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { getNewCompany } from "~/services";
 import { companySetupValidation } from "~/validations";
 import useAuth from "~/hooks/useAuth";
+import useCompany from "~/hooks/useCompany";
 
 import Input from "~/components/Form/Input";
 import Button from "~/components/Form/Button";
@@ -11,8 +12,9 @@ import Text from "~/components/Text";
 
 export default function CompanySetupForm() {
     const { user, update } = useAuth();
+    const { addCompany } = useCompany();
     const navigate = useNavigate();
-    
+
     const companyCountOptions = (["1-10", "11-50", "51-100", "101-500", "501-1000", "1000+"])
     const companyManagerOptions = (["Evet", "Hayır"])
 
@@ -27,12 +29,14 @@ export default function CompanySetupForm() {
     const onSubmit = (values) => {
         const data = {
             ...values,
-            user_id: user.user_id
+            user_id: user.user_id,
+            user_email: user.user_email
         }
 
         getNewCompany(data).then((response) => {
             if (response.status == "OK") {
                 update({ company_id: response.data._id });
+                addCompany(response.data);
                 navigate("/employers/posting", { replace: true });
             }
         });
@@ -43,7 +47,6 @@ export default function CompanySetupForm() {
             {({ isValid, dirty }) => {
                 return (
                     <Form className="flex flex-col gap-y-8">
-
                         <Input name="company_name" label="Şirketinizin adı *" />
                         <Select name="company_count" label="Şirketinizdeki çalışan sayısı" options={companyCountOptions} />
                         <div>

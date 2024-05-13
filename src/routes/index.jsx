@@ -7,6 +7,7 @@ import SignUp from "~/pages/auth/sign-up";
 import NotFound from "~/pages/not-found";
 import EmployerPosting from "~/pages/posting";
 import CompanySetup from "~/pages/company-setup";
+import Admin from "~/pages/admin";
 
 const routes = createBrowserRouter([
   {
@@ -37,6 +38,10 @@ const routes = createBrowserRouter([
       {
         path: "/auth/sign-up",
         element: <SignUp />,
+      },
+      {
+        path: "/admin",
+        element: <Admin />,
       },
       {
         path: "*",

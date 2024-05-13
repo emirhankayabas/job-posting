@@ -7,15 +7,23 @@ import { googleLogin } from "~/services";
 
 import Text from "../Text";
 import Button from "../Form/Button";
+import useAuth from "~/hooks/useAuth";
+import { useNavigate } from "react-router-dom";
 
 export default function AuthFooter({ authType }) {
     const [url, setUrl] = useState("")
     const [text, setText] = useState("")
+    const { login } = useAuth();
+    const navigate = useNavigate();
 
-    const login = useGoogleLogin({
+    const loginGoogle = useGoogleLogin({
         onSuccess: tokenResponse => {
             googleLogin({ access_token: tokenResponse.access_token }).then(response => {
                 console.log(response)
+                if (response.status == "OK") {
+                    login(response.user);
+                    navigate("/", { replace: true });
+                }
             })
         },
     });
@@ -45,7 +53,7 @@ export default function AuthFooter({ authType }) {
             </div>
 
             <div className="w-full flex flex-col mt-8 gap-y-2">
-                <Button variant="google" type="button" onClick={() => login()}>Google ile devam et</Button>
+                <Button variant="google" type="button" onClick={() => loginGoogle()}>Google ile devam et</Button>
                 <Button variant="facebook" type="button">Facebook ile devam et</Button>
             </div>
         </footer>

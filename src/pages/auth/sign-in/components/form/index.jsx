@@ -17,12 +17,16 @@ export default function SignInForm() {
     }
 
     const onSubmit = (values) => {
-        emailLogin(values).then((response) => {
-            if (response.status == "OK") {
-                login(response.user);
-                navigate("/employers", { replace: true });
-            }
-        })
+        emailLogin(values)
+            .then((response) => {
+                if (response.status == "OK") {
+                    login(response.user);
+                    navigate("/", { replace: true });
+                }
+            })
+            .catch((error) => {
+                console.log(error);
+            })
     }
 
     return (

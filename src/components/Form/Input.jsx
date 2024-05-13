@@ -6,7 +6,7 @@ export default function Input({ label, ...props }) {
     const [field, meta] = useField(props);
 
     return (
-        <div>
+        <div className='w-full'>
             <label
                 htmlFor={field.name}
                 className={classNames({

@@ -14,7 +14,7 @@ export default function EmployerPosting() {
 
     useEffect(() => {
         if (user.company_id == null) {
-            navigate("/employers/company-setup");
+            navigate("/employers/company-setup", { replace: true });
         }
     }, [user, navigate])
 

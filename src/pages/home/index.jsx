@@ -1,15 +1,28 @@
-import { Form, Formik } from 'formik';
-import Input from '~/components/Form/Input';
+import Header from "~/components/Header/Header";
+import JobSearch from "./components/search";
+import Job from "./components/job";
+import Tabs from "~/components/Tabs";
+import LastSearches from "./components/last-searches";
 
 export default function Home() {
   return (
-    <div className='max-w-7xl mx-auto h-full gap-y-4 pt-10'>
-      <Formik>
-        <Form className='grid grid-cols-2 gap-x-4'>
-          <Input name='search' label='Search' placeholder='Search for job postings' />
-          <Input name='location' label='Location' placeholder='Location' />
-        </Form>
-      </Formik>
-    </div>
+    <>
+      <Header />
+
+      <main>
+        <JobSearch />
+        <div className="mx-auto flex flex-col items-center gap-y-3">
+          <Tabs
+            tabTitles={["İş ilanı akışı", "Son aramalar"]}
+            tabContents={[
+              <Job key="1" />,
+              <LastSearches key="2" />
+            ]}
+            border={true}
+            theme="minimal"
+          />
+        </div>
+      </main >
+    </>
   )
 }

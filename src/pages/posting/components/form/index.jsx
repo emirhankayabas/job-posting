@@ -10,9 +10,11 @@ import EmployersFooter from "../footer";
 
 import 'react-quill/dist/quill.snow.css';
 import useAuth from "~/hooks/useAuth";
+import useCompany from "~/hooks/useCompany";
 
 export default function EmployersForm() {
     const { user } = useAuth();
+    const { companies } = useCompany();
     const navigate = useNavigate();
     const width = localStorage.getItem("width") || "max-w-3xl";
 
@@ -36,6 +38,7 @@ export default function EmployersForm() {
         const data = {
             ...values,
             company_id: user.company_id,
+            company_name: companies.find(company => company._id == user.company_id).company_name,
         }
 
         getNewJobPostings(data).then(response => {

@@ -6,8 +6,9 @@ import classNames from 'classnames'
 
 import { IoIosArrowDown } from "react-icons/io";
 import { RxExternalLink } from "react-icons/rx";
+import Button from './Form/Button';
 
-export default function Dropdown({ buttonText, items = [] }) {
+export default function Dropdown({ buttonText, items = [], dropDownCircle = true }) {
     return (
         <div className='relative'>
             <Menu>
@@ -18,7 +19,9 @@ export default function Dropdown({ buttonText, items = [] }) {
                             "text-white bg-neutral-800": open
                         })}>
                             {buttonText}
-                            <IoIosArrowDown className={classNames('w-4 h-4 transition-transform', { 'transform rotate-180': open })} />
+                            {dropDownCircle && (
+                                <IoIosArrowDown className={classNames('w-4 h-4 transition-transform', { 'transform rotate-180': open })} />
+                            )}
                         </Menu.Button>
                         <Menu.Items
                             className="flex flex-col gap-y-1 absolute right-0 mt-1.5 w-[340px] rounded-lg bg-neutral-800 shadow-lg outline-none transition-all overflow-hidden p-2 z-10"
@@ -41,19 +44,28 @@ export default function Dropdown({ buttonText, items = [] }) {
                                                     {item.target && <RxExternalLink className='w-5 h-5 ml-auto' />}
                                                 </Link>
                                             )
-                                        } else {
+                                        } else if (item.onClick) {
                                             return (
-                                                <button
+                                                <Button
                                                     onClick={item.onClick}
-                                                    className={classNames({
-                                                        'w-full text-left px-4 h-12 py-2.5 text-sm block text-white text-opacity-85 hover:text-opacity-100 rounded-lg hover:bg-neutral-700 transition-colors': true,
-                                                        'text-white': active
-                                                    })}
+                                                    variant='dropdown'
+                                                    active={active}
+                                                    redirectToSignIn={item.redirectToSignIn}
                                                 >
                                                     {item.icon && <item.icon className='w-5 h-5 inline-block mr-2' />}
                                                     {item.text}
-                                                </button>
+                                                </Button>
                                             )
+                                        } else {
+                                            return (
+                                                <div
+                                                    className='w-full px-4 h-12 py-2.5 font-medium block text-white'
+                                                    onClick={(event) => event.preventDefault()}
+                                                >
+                                                    {item.text}
+                                                </div>
+                                            )
+
                                         }
                                     }}
                                 </Menu.Item>
@@ -67,10 +79,11 @@ export default function Dropdown({ buttonText, items = [] }) {
 }
 
 Dropdown.propTypes = {
-    buttonText: propTypes.string.isRequired,
+    buttonText: propTypes.node.isRequired,
     items: propTypes.arrayOf(propTypes.shape({
         text: propTypes.string.isRequired,
         onClick: propTypes.func,
         to: propTypes.string,
-    }))
+    })),
+    dropDownCircle: propTypes.bool
 }

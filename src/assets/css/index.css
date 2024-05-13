@@ -3,6 +3,9 @@
 @tailwind utilities;
 
 @layer components {
+  :root {
+    color-scheme: dark;
+  }
   html,
   body,
   #layout {

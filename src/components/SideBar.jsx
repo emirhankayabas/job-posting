@@ -1,33 +1,14 @@
 import { useState } from "react"
 import { NavLink } from "react-router-dom";
+import propTypes from "prop-types";
 import classNames from "classnames";
 
-import { AiOutlineClose, AiOutlinePlus, AiOutlineMenu } from "react-icons/ai";
-import { MdOutlineWorkOutline } from "react-icons/md";
-import { PiUsersThreeBold } from "react-icons/pi";
+import { AiOutlineClose, AiOutlineMenu } from "react-icons/ai";
 
 
-export default function SideBar() {
+export default function SideBar({ navLinks }) {
     const [menuOpen, setMenuOpen] = useState(true);
     const hidden = !menuOpen ? "hidden" : "";
-
-    const [navLinks] = useState([
-        {
-            title: "İş İlanları",
-            icon: <MdOutlineWorkOutline size={20} />,
-            path: "/employers",
-        },
-        {
-            title: "İlan oluştur",
-            icon: <AiOutlinePlus size={22} />,
-            path: "/employers/posting",
-        },
-        {
-            title: "Adaylar",
-            icon: <PiUsersThreeBold size={20} />,
-            path: "/employers/candidates",
-        }
-    ])
 
     return (
         <aside
@@ -70,4 +51,8 @@ export default function SideBar() {
             </nav>
         </aside>
     )
+}
+
+SideBar.propTypes = {
+    navLinks: propTypes.array.isRequired
 }

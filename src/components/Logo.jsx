@@ -10,8 +10,8 @@ export default function Logo({ variant = "medium", ...props }) {
             src={logoUrl}
             className={classNames({
                 'h-6': variant === 'small',
-                'h-10': variant === 'medium',
-                'h-14': variant === 'large',
+                'h-8': variant === 'medium',
+                'h-12': variant === 'large',
             })}
         />
     )
