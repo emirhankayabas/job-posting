@@ -9,5 +9,6 @@
   <img src="https://github.com/emirhankayabas/job-posting/assets/92752721/4227007c-0166-4412-ae10-9df8a5b21d83" />
   <img src="https://github.com/emirhankayabas/job-posting/assets/92752721/438d1b2e-8c7c-46fe-bc9e-082bfffefdf7" />
   <img src="https://github.com/emirhankayabas/job-posting/assets/92752721/447e84f9-4f32-4e74-b7eb-76c4f3596eef" />
+  <img src="https://github.com/emirhankayabas/job-posting/assets/92752721/c96fafd0-bce8-46bd-b3ca-06f97c6d1890" />
   <img src="https://github.com/emirhankayabas/job-posting/assets/92752721/491eb3ec-4eba-4363-b134-ced178d8902b" />
 </div>
